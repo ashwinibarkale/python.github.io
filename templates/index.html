@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Lead Generation Form</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Lead Generation Form</h1>
+        <form method="POST" action="/submit">
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="{{ request.form.get('name', '') }}"  >
+            {% if validation_message.get('name') %}
+                <p class="error">{{ validation_message['name'] }}</p>
+            {% endif %}
+
+            <label for="email">Email:</label>
+            <input type="email" name="email" value="{{ request.form.get('email', '') }}"  >
+            {% if validation_message.get('email') %}
+                <p class="error">{{ validation_message['email'] }}</p>
+            {% endif %}
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" name="phone" value="{{ request.form.get('phone', '') }}"  >
+            {% if validation_message.get('phone') %}
+                <p class="error">{{ validation_message['phone'] }}</p>
+            {% endif %}
+
+            <label for="password">Password:</label>
+            <input type="password" name="password"  >
+            {% if validation_message.get('password') %}
+                <p class="error">{{ validation_message['password'] }}</p>
+            {% endif %}
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" name="confirm_password"  >
+            {% if validation_message.get('confirm_password') %}
+                <p class="error">{{ validation_message['confirm_password'] }}</p>
+            {% endif %}
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
